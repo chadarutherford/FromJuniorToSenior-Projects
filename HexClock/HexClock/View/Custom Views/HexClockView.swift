@@ -11,7 +11,6 @@ import UIKit
 final class HexClockView: UIView {
 	
 	// MARK: Properties
-	
 	private var clockLabel: UILabel = {
 		let clockLabel = UILabel()
 		clockLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -21,10 +20,26 @@ final class HexClockView: UIView {
 		return clockLabel
 	}()
 	
-	private var timer: Timer?
+	private lazy var timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+		guard let self = self else { return }
+		let now = Date()
+		let (hour, minute, second) = now.timeComponents
+		let hourString = String(format: "%02d", hour)
+		let minuteString = String(format: "%02d", minute)
+		let secondString = String(format: "%02d", second)
+		
+		// Set the Hex value for the clock
+		self.clockLabel.text = "#" + hourString + minuteString + secondString
+		
+		// Animate the background color
+		UIView.animate(withDuration: 1.0) {
+			self.backgroundColor = UIColor.fromTime(hour: hour, minute: minute, second: second)
+		}
+	}
+	
+	
 	
 	// MARK: Initialization
-	
 	init() {
 		super.init(frame: CGRect(x: 0, y: 0, width: 400, height: 200))
 		setup()
@@ -39,25 +54,12 @@ final class HexClockView: UIView {
 		super.init(coder: aDecoder)
 		setup()
 	}
-	
-	// MARK: UIView
-	
+}
+
+extension HexClockView {
 	private func setup() {
 		translatesAutoresizingMaskIntoConstraints = false
 		addSubview(clockLabel)
 		clockLabel.pinTo(self)
-		
-		// Setup timer.
-		timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-			let now = Date()
-			let (hour, minute, second) = now.timeComponents
-			let padNumber = { n in String(format: "%02d", n) }
-			
-			self.clockLabel.text = "#\(padNumber(hour))\(padNumber(minute))\(padNumber(second))"
-			
-			UIView.animate(withDuration: 1.0) {
-				self.backgroundColor = UIColor.fromTime(hour: hour, minute: minute, second: second)
-			}
-		}
 	}
 }
