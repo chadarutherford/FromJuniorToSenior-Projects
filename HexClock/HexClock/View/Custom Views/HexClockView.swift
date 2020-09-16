@@ -7,15 +7,6 @@
 
 import UIKit
 
-/// Applies a property-change block, with or without, animations depending on the `animated` flag.
-func animateOrApply(animationDuration: TimeInterval, animated: Bool, block: @escaping () -> Void) {
-	if animated {
-		UIView.animate(withDuration: animationDuration, animations: block)
-	} else {
-		block()
-	}
-}
-
 /// Hex Clock view.
 final class HexClockView: UIView {
 
@@ -75,9 +66,12 @@ final class HexClockView: UIView {
 
 		clockLabel.text = "#\(padNumber(hour))\(padNumber(minute))\(padNumber(second))"
 
-		animateOrApply(animationDuration: 1.0, animated: animated) {
+		if animated {
+			UIView.animate(withDuration: 1.0) {
+				self.backgroundColor = UIColor.fromTime(hour: hour, minute: minute, second: second)
+			}
+		} else {
 			self.backgroundColor = UIColor.fromTime(hour: hour, minute: minute, second: second)
 		}
 	}
-
 }
