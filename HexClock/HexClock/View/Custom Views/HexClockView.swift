@@ -21,7 +21,15 @@ final class HexClockView: UIView {
 
 	// MARK: Properties
 
-	private var clockLabel: UILabel?
+	private var clockLabel: UILabel = {
+		let clockLabel = UILabel()
+		clockLabel.translatesAutoresizingMaskIntoConstraints = false
+		clockLabel.textColor = UIColor.white
+		clockLabel.textAlignment = .center
+		clockLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 250, weight: .ultraLight)
+		return clockLabel
+	}()
+	
 	private var timer: Timer?
 
 	// MARK: Initialization
@@ -45,19 +53,8 @@ final class HexClockView: UIView {
 
 	private func setup() {
 		translatesAutoresizingMaskIntoConstraints = false
-
-		// Create clock label.
-		let clockLabel = UILabel()
-
-		clockLabel.translatesAutoresizingMaskIntoConstraints = false
-		clockLabel.textColor = UIColor.white
-		clockLabel.textAlignment = .center
-		clockLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 250, weight: .ultraLight)
-
 		addSubview(clockLabel)
 		clockLabel.pinTo(self)
-
-		self.clockLabel = clockLabel
 
 		// Setup timer.
 		timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
@@ -76,7 +73,7 @@ final class HexClockView: UIView {
 		let (hour, minute, second) = now.timeComponents
 		let padNumber = { n in String(format: "%02d", n) }
 
-		clockLabel?.text = "#\(padNumber(hour))\(padNumber(minute))\(padNumber(second))"
+		clockLabel.text = "#\(padNumber(hour))\(padNumber(minute))\(padNumber(second))"
 
 		animateOrApply(animationDuration: 1.0, animated: animated) {
 			self.backgroundColor = UIColor.fromTime(hour: hour, minute: minute, second: second)
