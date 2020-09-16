@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		63D7DF922512742500E7F912 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7DF912512742500E7F912 /* AppDelegate.swift */; };
-		63D7DF942512742500E7F912 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7DF932512742500E7F912 /* ViewController.swift */; };
-		63D7DF972512742500E7F912 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D7DF952512742500E7F912 /* Main.storyboard */; };
+		63D7DF942512742500E7F912 /* HexClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7DF932512742500E7F912 /* HexClockViewController.swift */; };
 		63D7DF992512742600E7F912 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D7DF982512742600E7F912 /* Assets.xcassets */; };
 		63D7DF9C2512742600E7F912 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D7DF9A2512742600E7F912 /* LaunchScreen.storyboard */; };
+		63FBCBA82512764D0055E4AE /* HexClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FBCBA72512764D0055E4AE /* HexClockView.swift */; };
+		63FBCBAA251276870055E4AE /* Date+HMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FBCBA9251276870055E4AE /* Date+HMS.swift */; };
+		63FBCBAC251276B60055E4AE /* UIColor+FromTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FBCBAB251276B60055E4AE /* UIColor+FromTime.swift */; };
+		63FBCBAE251276D70055E4AE /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FBCBAD251276D70055E4AE /* UIView+AutoLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		63D7DF8E2512742500E7F912 /* HexClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HexClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D7DF912512742500E7F912 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63D7DF932512742500E7F912 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		63D7DF962512742500E7F912 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		63D7DF932512742500E7F912 /* HexClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexClockViewController.swift; sourceTree = "<group>"; };
 		63D7DF982512742600E7F912 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63D7DF9B2512742600E7F912 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63D7DF9D2512742600E7F912 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63FBCBA72512764D0055E4AE /* HexClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexClockView.swift; sourceTree = "<group>"; };
+		63FBCBA9251276870055E4AE /* Date+HMS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+HMS.swift"; sourceTree = "<group>"; };
+		63FBCBAB251276B60055E4AE /* UIColor+FromTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+FromTime.swift"; sourceTree = "<group>"; };
+		63FBCBAD251276D70055E4AE /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,73 @@
 		63D7DF902512742500E7F912 /* HexClock */ = {
 			isa = PBXGroup;
 			children = (
-				63D7DF912512742500E7F912 /* AppDelegate.swift */,
-				63D7DF932512742500E7F912 /* ViewController.swift */,
-				63D7DF952512742500E7F912 /* Main.storyboard */,
-				63D7DF982512742600E7F912 /* Assets.xcassets */,
-				63D7DF9A2512742600E7F912 /* LaunchScreen.storyboard */,
-				63D7DF9D2512742600E7F912 /* Info.plist */,
+				63D7DFA52512755600E7F912 /* View */,
+				63D7DFA62512755C00E7F912 /* Controller */,
+				63D7DFA32512753700E7F912 /* Support */,
 			);
 			path = HexClock;
+			sourceTree = "<group>";
+		};
+		63D7DFA32512753700E7F912 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				63D7DFA8251275BA00E7F912 /* Extensions */,
+				63D7DFA42512753D00E7F912 /* App Lifecycle */,
+				63D7DF982512742600E7F912 /* Assets.xcassets */,
+				63D7DF9D2512742600E7F912 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		63D7DFA42512753D00E7F912 /* App Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				63D7DF912512742500E7F912 /* AppDelegate.swift */,
+			);
+			path = "App Lifecycle";
+			sourceTree = "<group>";
+		};
+		63D7DFA52512755600E7F912 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63FBCBA62512763B0055E4AE /* Custom Views */,
+				63D7DFA72512756C00E7F912 /* Storyboards */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63D7DFA62512755C00E7F912 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				63D7DF932512742500E7F912 /* HexClockViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		63D7DFA72512756C00E7F912 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				63D7DF9A2512742600E7F912 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		63D7DFA8251275BA00E7F912 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				63FBCBA9251276870055E4AE /* Date+HMS.swift */,
+				63FBCBAB251276B60055E4AE /* UIColor+FromTime.swift */,
+				63FBCBAD251276D70055E4AE /* UIView+AutoLayout.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		63FBCBA62512763B0055E4AE /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				63FBCBA72512764D0055E4AE /* HexClockView.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +188,6 @@
 			files = (
 				63D7DF9C2512742600E7F912 /* LaunchScreen.storyboard in Resources */,
 				63D7DF992512742600E7F912 /* Assets.xcassets in Resources */,
-				63D7DF972512742500E7F912 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,22 +198,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63D7DF942512742500E7F912 /* ViewController.swift in Sources */,
+				63FBCBAC251276B60055E4AE /* UIColor+FromTime.swift in Sources */,
+				63FBCBAE251276D70055E4AE /* UIView+AutoLayout.swift in Sources */,
+				63D7DF942512742500E7F912 /* HexClockViewController.swift in Sources */,
 				63D7DF922512742500E7F912 /* AppDelegate.swift in Sources */,
+				63FBCBAA251276870055E4AE /* Date+HMS.swift in Sources */,
+				63FBCBA82512764D0055E4AE /* HexClockView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		63D7DF952512742500E7F912 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				63D7DF962512742500E7F912 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		63D7DF9A2512742600E7F912 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,7 +344,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7DFWNNEL3;
-				INFOPLIST_FILE = HexClock/Info.plist;
+				INFOPLIST_FILE = HexClock/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,7 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7DFWNNEL3;
-				INFOPLIST_FILE = HexClock/Info.plist;
+				INFOPLIST_FILE = HexClock/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
