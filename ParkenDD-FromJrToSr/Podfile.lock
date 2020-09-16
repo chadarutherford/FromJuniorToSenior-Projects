@@ -1,0 +1,38 @@
+PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - Marshal (1.2.4)
+  - ObjectMapper (4.2.0)
+  - ParkKit (0.3.0):
+    - Marshal (= 1.2.4)
+  - SwiftyDrop (4.2.0)
+  - SwiftyTimer (2.1.0)
+
+DEPENDENCIES:
+  - Charts
+  - ObjectMapper
+  - ParkKit
+  - SwiftyDrop
+  - SwiftyTimer
+
+SPEC REPOS:
+  trunk:
+    - Charts
+    - Marshal
+    - ObjectMapper
+    - ParkKit
+    - SwiftyDrop
+    - SwiftyTimer
+
+SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  ParkKit: e4973c562e3cfb23c4c3cba6e26ef7d81b1b7951
+  SwiftyDrop: c5b306082dfbd7d6b9c1e569dcdd2ab13306e552
+  SwiftyTimer: 02dd6cf10cbc71cbf67cec494f6e5eb782102543
+
+PODFILE CHECKSUM: a35c3b2ecdbfb31a020af66bb50ced341ef2338b
+
+COCOAPODS: 1.9.1

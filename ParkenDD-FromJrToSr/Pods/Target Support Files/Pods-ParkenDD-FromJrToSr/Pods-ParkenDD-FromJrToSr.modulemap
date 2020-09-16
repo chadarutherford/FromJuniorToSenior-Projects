@@ -1,0 +1,6 @@
+framework module Pods_ParkenDD_FromJrToSr {
+  umbrella header "Pods-ParkenDD-FromJrToSr-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,12 @@
+# source 'https://github.com/Cocoapods/Specs.git'
+
+platform :ios, '14.0'
+use_frameworks!
+
+target 'ParkenDD-FromJrToSr' do
+  pod 'ParkKit'
+  pod 'SwiftyTimer'
+  pod 'ObjectMapper'
+  pod 'SwiftyDrop'
+  pod 'Charts'
+end

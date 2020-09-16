@@ -3,27 +3,74 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CEADC900CDB9552EE3B7843 /* Pods_ParkenDD_FromJrToSr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71174B6D580ECC362B3CE5F9 /* Pods_ParkenDD_FromJrToSr.framework */; };
 		63C431A32512CAA100410726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C431A22512CAA100410726 /* AppDelegate.swift */; };
 		63C431A52512CAA100410726 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C431A42512CAA100410726 /* SceneDelegate.swift */; };
-		63C431A72512CAA100410726 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C431A62512CAA100410726 /* ViewController.swift */; };
 		63C431AA2512CAA100410726 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C431A82512CAA100410726 /* Main.storyboard */; };
 		63C431AC2512CAA300410726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C431AB2512CAA300410726 /* Assets.xcassets */; };
 		63C431AF2512CAA300410726 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C431AD2512CAA300410726 /* LaunchScreen.storyboard */; };
+		63E913BC2512D2860047CB92 /* NSDate+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913B82512D2860047CB92 /* NSDate+Comparable.swift */; };
+		63E913BD2512D2860047CB92 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913B92512D2860047CB92 /* Drop.swift */; };
+		63E913BE2512D2860047CB92 /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913BA2512D2860047CB92 /* NSDateFormatter.swift */; };
+		63E913BF2512D2860047CB92 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913BB2512D2860047CB92 /* Dictionary+MapFilter.swift */; };
+		63E913C82512D2D80047CB92 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E913C22512D2D70047CB92 /* LaunchScreen.xib */; };
+		63E913C92512D2D80047CB92 /* Loc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913C32512D2D70047CB92 /* Loc.swift */; };
+		63E913CA2512D2D80047CB92 /* augustusbruecke.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 63E913C52512D2D80047CB92 /* augustusbruecke.gpx */; };
+		63E913CB2512D2D80047CB92 /* durchDresden.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 63E913C62512D2D80047CB92 /* durchDresden.gpx */; };
+		63E913D12512D3030047CB92 /* Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913CD2512D3030047CB92 /* Default.swift */; };
+		63E913D22512D3030047CB92 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913CE2512D3030047CB92 /* Colors.swift */; };
+		63E913D32512D3030047CB92 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913CF2512D3030047CB92 /* Constants.swift */; };
+		63E913D42512D3030047CB92 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913D02512D3030047CB92 /* Location.swift */; };
+		63E913DB2512D3530047CB92 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E913DA2512D3530047CB92 /* Settings.storyboard */; };
+		63E913DD2512D3650047CB92 /* ParkinglotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913DC2512D3650047CB92 /* ParkinglotAnnotation.swift */; };
+		63E913DF2512D36F0047CB92 /* LotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913DE2512D36F0047CB92 /* LotCell.swift */; };
+		63E913E12512D3850047CB92 /* LotlistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913E02512D3850047CB92 /* LotlistDataSource.swift */; };
+		63E913E72512D3990047CB92 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913E22512D3980047CB92 /* CitySelectionTVC.swift */; };
+		63E913E82512D3990047CB92 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913E32512D3980047CB92 /* MapViewController.swift */; };
+		63E913E92512D3990047CB92 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913E42512D3980047CB92 /* SettingsViewController.swift */; };
+		63E913EA2512D3990047CB92 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913E52512D3980047CB92 /* ForecastViewController.swift */; };
+		63E913EB2512D3990047CB92 /* LotlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E913E62512D3990047CB92 /* LotlistViewController.swift */; };
+		63E913ED2512D3AC0047CB92 /* ForecastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E913EC2512D3AC0047CB92 /* ForecastViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		63C4319F2512CAA100410726 /* ParkenDD-FromJrToSr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParkenDD-FromJrToSr.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C431A22512CAA100410726 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63C431A42512CAA100410726 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		63C431A62512CAA100410726 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63C431A92512CAA100410726 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63C431AB2512CAA300410726 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63C431AE2512CAA300410726 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63C431B02512CAA300410726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63E913B82512D2860047CB92 /* NSDate+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparable.swift"; sourceTree = "<group>"; };
+		63E913B92512D2860047CB92 /* Drop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
+		63E913BA2512D2860047CB92 /* NSDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatter.swift; sourceTree = "<group>"; };
+		63E913BB2512D2860047CB92 /* Dictionary+MapFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+MapFilter.swift"; sourceTree = "<group>"; };
+		63E913C22512D2D70047CB92 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		63E913C32512D2D70047CB92 /* Loc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loc.swift; sourceTree = "<group>"; };
+		63E913C42512D2D80047CB92 /* ParkenDD-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParkenDD-Bridging-Header.h"; sourceTree = "<group>"; };
+		63E913C52512D2D80047CB92 /* augustusbruecke.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = augustusbruecke.gpx; sourceTree = "<group>"; };
+		63E913C62512D2D80047CB92 /* durchDresden.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = durchDresden.gpx; sourceTree = "<group>"; };
+		63E913CD2512D3030047CB92 /* Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Default.swift; sourceTree = "<group>"; };
+		63E913CE2512D3030047CB92 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		63E913CF2512D3030047CB92 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		63E913D02512D3030047CB92 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		63E913DA2512D3530047CB92 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		63E913DC2512D3650047CB92 /* ParkinglotAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotAnnotation.swift; sourceTree = "<group>"; };
+		63E913DE2512D36F0047CB92 /* LotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotCell.swift; sourceTree = "<group>"; };
+		63E913E02512D3850047CB92 /* LotlistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotlistDataSource.swift; sourceTree = "<group>"; };
+		63E913E22512D3980047CB92 /* CitySelectionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionTVC.swift; sourceTree = "<group>"; };
+		63E913E32512D3980047CB92 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		63E913E42512D3980047CB92 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		63E913E52512D3980047CB92 /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		63E913E62512D3990047CB92 /* LotlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotlistViewController.swift; sourceTree = "<group>"; };
+		63E913EC2512D3AC0047CB92 /* ForecastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastViewController.xib; sourceTree = "<group>"; };
+		703D2F391B986ABBDF62A004 /* Pods-ParkenDD-FromJrToSr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkenDD-FromJrToSr.release.xcconfig"; path = "Target Support Files/Pods-ParkenDD-FromJrToSr/Pods-ParkenDD-FromJrToSr.release.xcconfig"; sourceTree = "<group>"; };
+		71174B6D580ECC362B3CE5F9 /* Pods_ParkenDD_FromJrToSr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParkenDD_FromJrToSr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		778E70E5C9481D21A4C5C7B8 /* Pods-ParkenDD-FromJrToSr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkenDD-FromJrToSr.debug.xcconfig"; path = "Target Support Files/Pods-ParkenDD-FromJrToSr/Pods-ParkenDD-FromJrToSr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +78,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CEADC900CDB9552EE3B7843 /* Pods_ParkenDD_FromJrToSr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5FBDE1029B4BC740C326639C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				778E70E5C9481D21A4C5C7B8 /* Pods-ParkenDD-FromJrToSr.debug.xcconfig */,
+				703D2F391B986ABBDF62A004 /* Pods-ParkenDD-FromJrToSr.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		63C431962512CAA100410726 = {
 			isa = PBXGroup;
 			children = (
 				63C431A12512CAA100410726 /* ParkenDD-FromJrToSr */,
 				63C431A02512CAA100410726 /* Products */,
+				5FBDE1029B4BC740C326639C /* Pods */,
+				D420518A508C4EA45F9C7B1C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +115,125 @@
 		63C431A12512CAA100410726 /* ParkenDD-FromJrToSr */ = {
 			isa = PBXGroup;
 			children = (
-				63C431A22512CAA100410726 /* AppDelegate.swift */,
-				63C431A42512CAA100410726 /* SceneDelegate.swift */,
-				63C431A62512CAA100410726 /* ViewController.swift */,
-				63C431A82512CAA100410726 /* Main.storyboard */,
-				63C431AB2512CAA300410726 /* Assets.xcassets */,
-				63C431AD2512CAA300410726 /* LaunchScreen.storyboard */,
-				63C431B02512CAA300410726 /* Info.plist */,
+				63E913D52512D3120047CB92 /* Model */,
+				63E913D62512D3170047CB92 /* View */,
+				63E913D72512D31C0047CB92 /* Controller */,
+				63E913B52512D2400047CB92 /* Support */,
 			);
 			path = "ParkenDD-FromJrToSr";
+			sourceTree = "<group>";
+		};
+		63E913B52512D2400047CB92 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				63E913CC2512D2F50047CB92 /* Helpers */,
+				63E913C02512D2B50047CB92 /* Supporting Files  */,
+				63E913B72512D2740047CB92 /* Extensions */,
+				63E913B62512D2620047CB92 /* App Lifecycle */,
+				63C431AB2512CAA300410726 /* Assets.xcassets */,
+				63C431B02512CAA300410726 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		63E913B62512D2620047CB92 /* App Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				63C431A22512CAA100410726 /* AppDelegate.swift */,
+				63C431A42512CAA100410726 /* SceneDelegate.swift */,
+			);
+			path = "App Lifecycle";
+			sourceTree = "<group>";
+		};
+		63E913B72512D2740047CB92 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				63E913BB2512D2860047CB92 /* Dictionary+MapFilter.swift */,
+				63E913B92512D2860047CB92 /* Drop.swift */,
+				63E913B82512D2860047CB92 /* NSDate+Comparable.swift */,
+				63E913BA2512D2860047CB92 /* NSDateFormatter.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		63E913C02512D2B50047CB92 /* Supporting Files  */ = {
+			isa = PBXGroup;
+			children = (
+				63E913C52512D2D80047CB92 /* augustusbruecke.gpx */,
+				63E913C62512D2D80047CB92 /* durchDresden.gpx */,
+				63E913C22512D2D70047CB92 /* LaunchScreen.xib */,
+				63E913C32512D2D70047CB92 /* Loc.swift */,
+				63E913C42512D2D80047CB92 /* ParkenDD-Bridging-Header.h */,
+			);
+			path = "Supporting Files ";
+			sourceTree = "<group>";
+		};
+		63E913CC2512D2F50047CB92 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				63E913CE2512D3030047CB92 /* Colors.swift */,
+				63E913CF2512D3030047CB92 /* Constants.swift */,
+				63E913CD2512D3030047CB92 /* Default.swift */,
+				63E913D02512D3030047CB92 /* Location.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		63E913D52512D3120047CB92 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				63E913E02512D3850047CB92 /* LotlistDataSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		63E913D62512D3170047CB92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63E913D92512D3340047CB92 /* Custom Views */,
+				63E913D82512D3270047CB92 /* Storyboards */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63E913D72512D31C0047CB92 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				63E913E22512D3980047CB92 /* CitySelectionTVC.swift */,
+				63E913E52512D3980047CB92 /* ForecastViewController.swift */,
+				63E913E62512D3990047CB92 /* LotlistViewController.swift */,
+				63E913E32512D3980047CB92 /* MapViewController.swift */,
+				63E913E42512D3980047CB92 /* SettingsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		63E913D82512D3270047CB92 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				63E913EC2512D3AC0047CB92 /* ForecastViewController.xib */,
+				63E913DA2512D3530047CB92 /* Settings.storyboard */,
+				63C431A82512CAA100410726 /* Main.storyboard */,
+				63C431AD2512CAA300410726 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		63E913D92512D3340047CB92 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				63E913DE2512D36F0047CB92 /* LotCell.swift */,
+				63E913DC2512D3650047CB92 /* ParkinglotAnnotation.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		D420518A508C4EA45F9C7B1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				71174B6D580ECC362B3CE5F9 /* Pods_ParkenDD_FromJrToSr.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +243,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63C431B32512CAA300410726 /* Build configuration list for PBXNativeTarget "ParkenDD-FromJrToSr" */;
 			buildPhases = (
+				BAA6E0C0FEA199870BAF2AA0 /* [CP] Check Pods Manifest.lock */,
 				63C4319B2512CAA100410726 /* Sources */,
 				63C4319C2512CAA100410726 /* Frameworks */,
 				63C4319D2512CAA100410726 /* Resources */,
+				18EAE82AC51BE878F29C2659 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,22 +295,85 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63E913C82512D2D80047CB92 /* LaunchScreen.xib in Resources */,
+				63E913ED2512D3AC0047CB92 /* ForecastViewController.xib in Resources */,
+				63E913CB2512D2D80047CB92 /* durchDresden.gpx in Resources */,
 				63C431AF2512CAA300410726 /* LaunchScreen.storyboard in Resources */,
 				63C431AC2512CAA300410726 /* Assets.xcassets in Resources */,
+				63E913CA2512D2D80047CB92 /* augustusbruecke.gpx in Resources */,
 				63C431AA2512CAA100410726 /* Main.storyboard in Resources */,
+				63E913DB2512D3530047CB92 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18EAE82AC51BE878F29C2659 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParkenDD-FromJrToSr/Pods-ParkenDD-FromJrToSr-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ParkenDD-FromJrToSr/Pods-ParkenDD-FromJrToSr-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParkenDD-FromJrToSr/Pods-ParkenDD-FromJrToSr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAA6E0C0FEA199870BAF2AA0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ParkenDD-FromJrToSr-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63C4319B2512CAA100410726 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C431A72512CAA100410726 /* ViewController.swift in Sources */,
+				63E913D32512D3030047CB92 /* Constants.swift in Sources */,
+				63E913D22512D3030047CB92 /* Colors.swift in Sources */,
+				63E913D12512D3030047CB92 /* Default.swift in Sources */,
+				63E913BF2512D2860047CB92 /* Dictionary+MapFilter.swift in Sources */,
+				63E913E12512D3850047CB92 /* LotlistDataSource.swift in Sources */,
+				63E913C92512D2D80047CB92 /* Loc.swift in Sources */,
 				63C431A32512CAA100410726 /* AppDelegate.swift in Sources */,
+				63E913BC2512D2860047CB92 /* NSDate+Comparable.swift in Sources */,
+				63E913DD2512D3650047CB92 /* ParkinglotAnnotation.swift in Sources */,
+				63E913BD2512D2860047CB92 /* Drop.swift in Sources */,
 				63C431A52512CAA100410726 /* SceneDelegate.swift in Sources */,
+				63E913EA2512D3990047CB92 /* ForecastViewController.swift in Sources */,
+				63E913D42512D3030047CB92 /* Location.swift in Sources */,
+				63E913E92512D3990047CB92 /* SettingsViewController.swift in Sources */,
+				63E913BE2512D2860047CB92 /* NSDateFormatter.swift in Sources */,
+				63E913DF2512D36F0047CB92 /* LotCell.swift in Sources */,
+				63E913E72512D3990047CB92 /* CitySelectionTVC.swift in Sources */,
+				63E913E82512D3990047CB92 /* MapViewController.swift in Sources */,
+				63E913EB2512D3990047CB92 /* LotlistViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +517,13 @@
 		};
 		63C431B42512CAA300410726 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 778E70E5C9481D21A4C5C7B8 /* Pods-ParkenDD-FromJrToSr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7DFWNNEL3;
-				INFOPLIST_FILE = "ParkenDD-FromJrToSr/Info.plist";
+				INFOPLIST_FILE = "ParkenDD-FromJrToSr/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,12 +537,13 @@
 		};
 		63C431B52512CAA300410726 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 703D2F391B986ABBDF62A004 /* Pods-ParkenDD-FromJrToSr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7DFWNNEL3;
-				INFOPLIST_FILE = "ParkenDD-FromJrToSr/Info.plist";
+				INFOPLIST_FILE = "ParkenDD-FromJrToSr/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
