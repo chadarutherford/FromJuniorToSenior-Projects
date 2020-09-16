@@ -1,0 +1,13 @@
+platform :ios, '14.0'
+inhibit_all_warnings!
+use_frameworks!
+
+target 'Depressed-FromJrToSr' do
+  pod 'ResearchKit'
+end
+
+target 'Depressed-FromJrToSrTests' do
+  pod 'Quick'
+  pod 'Nimble'
+  pod 'ResearchKit'
+end

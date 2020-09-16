@@ -1,0 +1,6 @@
+framework module Pods_Depressed_FromJrToSrTests {
+  umbrella header "Pods-Depressed-FromJrToSrTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

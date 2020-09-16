@@ -1,0 +1,24 @@
+PODS:
+  - Nimble (8.1.2)
+  - Quick (3.0.0)
+  - ResearchKit (2.0.0)
+
+DEPENDENCIES:
+  - Nimble
+  - Quick
+  - ResearchKit
+
+SPEC REPOS:
+  trunk:
+    - Nimble
+    - Quick
+    - ResearchKit
+
+SPEC CHECKSUMS:
+  Nimble: 3864815b4703c7ebffba875973c70e854489fbae
+  Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
+  ResearchKit: 06020ff370f830138b5efd10bd3606acc4de49d6
+
+PODFILE CHECKSUM: 7097ca4376f8831a636ceb9f10e2e14b9586f278
+
+COCOAPODS: 1.9.1

@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-Depressed-FromJrToSrTests/Pods-Depressed-FromJrToSrTests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ResearchKit/ResearchKit.framework
+${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework
+${BUILT_PRODUCTS_DIR}/Quick/Quick.framework
