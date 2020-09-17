@@ -9,8 +9,13 @@
 import UIKit
 import ParkKit
 
+protocol CitySelectionTVCActions {
+	var showExperimental: Bool { get }
+}
+
 class CitySelectionTVC: UITableViewController {
 
+	var delegate: CitySelectionTVCActions!
     var availableCities = [City]()
 
 	override func viewDidLoad() {
@@ -21,40 +26,41 @@ class CitySelectionTVC: UITableViewController {
 			case .failure(let error):
 				print(error)
 			case .success(let apiResponse):
-				let showExperimental = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
-				self.availableCities = showExperimental ? apiResponse.cities : apiResponse.cities.filter { $0.hasActiveSupport }
+				self.availableCities = self.delegate.showExperimental ? apiResponse.cities : apiResponse.cities.filter { $0.hasActiveSupport }
 			}
 			DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
 	}
+}
 
+extension CitySelectionTVC {
 	// MARK: - Table view data source
-
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableCities.count
+		return availableCities.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "citySelectionCell", for: indexPath)
-        let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity) ?? ""
+		let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity) ?? ""
 
-        let city = availableCities[indexPath.row]
+		let city = availableCities[indexPath.row]
 
-        cell.textLabel?.text = city.name
-        cell.textLabel?.textColor = city.hasActiveSupport ? .black : .lightGray
+		cell.textLabel?.text = city.name
+		cell.textLabel?.textColor = city.hasActiveSupport ? .black : .lightGray
 		cell.accessoryType = city.name == selectedCity ? .checkmark : .none
 
 		return cell
 	}
+}
 
+extension CitySelectionTVC {
 	// MARK: - Table view delegate
-
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		for row in 0..<tableView.numberOfRows(inSection: 0) {
 			tableView.cellForRow(at: IndexPath(row: row, section: 0))?.accessoryType = .none
@@ -62,10 +68,10 @@ class CitySelectionTVC: UITableViewController {
 		tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
 		tableView.deselectRow(at: indexPath, animated: true)
 
-        let selectedCity = availableCities[indexPath.row]
+		let selectedCity = availableCities[indexPath.row]
 
-        UserDefaults.standard.set(selectedCity.name, forKey: Defaults.selectedCity)
-        UserDefaults.standard.set(selectedCity.name, forKey: Defaults.selectedCityName)
+		UserDefaults.standard.set(selectedCity.name, forKey: Defaults.selectedCity)
+		UserDefaults.standard.set(selectedCity.name, forKey: Defaults.selectedCityName)
 		UserDefaults.standard.synchronize()
 
 		if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate, let lotlistVC = sceneDelegate.window?.rootViewController?.children[0] as? LotlistViewController {
@@ -74,5 +80,4 @@ class CitySelectionTVC: UITableViewController {
 
 		let _ = navigationController?.popToRootViewController(animated: true)
 	}
-
 }
