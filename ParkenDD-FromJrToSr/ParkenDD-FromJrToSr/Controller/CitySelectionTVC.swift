@@ -41,6 +41,13 @@ class CitySelectionTVC: UITableViewController {
             }
         }
 	}
+	
+	class func new(delegate: CitySelectionTVCActions) -> CitySelectionTVC {
+		let settingsStoryboard = UIStoryboard(name: "Settings", bundle: Bundle.main)
+		let citySelectionTVC = settingsStoryboard.instantiateViewController(identifier: "City SelectionTVC") as! CitySelectionTVC
+		citySelectionTVC.delegate = delegate
+		return citySelectionTVC
+	}
 }
 
 extension CitySelectionTVC {

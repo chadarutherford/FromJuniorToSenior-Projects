@@ -11,6 +11,7 @@ import Foundation
 enum Default: String {
     case selectedCity
     case selectedCityName
+	case selectedCitySupport
     case sortingType
     case supportedCities
     case grayscaleUI
@@ -22,6 +23,7 @@ enum Default: String {
         return [
             .selectedCity: "Dresden",
             .selectedCityName: "Dresden",
+			.selectedCitySupport: true,
             .sortingType: "standard",
             .supportedCities: ["Dresden"],
             .grayscaleUI: false,

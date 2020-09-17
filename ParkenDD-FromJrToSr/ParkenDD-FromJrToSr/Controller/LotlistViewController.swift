@@ -6,56 +6,56 @@
 //  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 //
 
-import UIKit
 import ParkKit
 import SwiftyTimer
+import UIKit
 
 class LotlistViewController: UITableViewController, UIViewControllerPreviewingDelegate {
-
+	
 	var parkinglots = [Lot]()
 	var defaultSortedParkinglots = [Lot]()
-
+	
 	var dataURL: String?
-
-    var dataSource = LotlistDataSource()
-
+	
+	var dataSource = LotlistDataSource()
+	
 	@IBOutlet weak var titleButton: UIButton!
-
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-        tableView.dataSource = dataSource
-
-        Location.shared.onMove { [weak self] location in
-            self?.tableView.reloadData()
-        }
-
+		
+		tableView.dataSource = dataSource
+		
+		Location.shared.onMove { [weak self] location in
+			self?.tableView.reloadData()
+		}
+		
 		// display the standard reload button
 		showReloadButton()
-
+		
 		// pretty navbar with black buttons
 		let navBar = self.navigationController?.navigationBar
 		navBar!.isTranslucent = false
 		navBar!.tintColor = UIColor.black
-
+		
 		// Set title to selected city
 		updateTitle(withCity: nil)
-
+		
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-
-
+		
+		
 		updateData()
 		Timer.every(5.minutes, updateData)
 	}
-
+	
 	override func viewWillAppear(_ animated: Bool) {
 		tableView.reloadData()
-
+		
 		// Start getting location updates if the user wants lots sorted by distance
 		if let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType), sortingType == Sorting.distance || sortingType == Sorting.euclid {
 			if Location.authState == .authorizedWhenInUse {
-                Location.manager.startUpdatingLocation()
+				Location.manager.startUpdatingLocation()
 			} else {
 				let alertController = UIAlertController(title: L10n.locationDataErrorTitle.string, message: L10n.locationDataError.string, preferredStyle: .alert)
 				alertController.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
@@ -68,95 +68,95 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 		} else {
 			Location.manager.stopUpdatingLocation()
 		}
-
-        (tableView.dataSource as? LotlistDataSource)?.sortLots()
-
+		
+		(tableView.dataSource as? LotlistDataSource)?.sortLots()
+		
 		refreshControl?.endRefreshing()
 	}
-
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showParkinglotMap" {
 			let indexPath = tableView.indexPathForSelectedRow
-
+			
 			let selectedParkinglot = parkinglots[indexPath!.row]
-
+			
 			let mapVC = segue.destination as? MapViewController
 			mapVC?.detailParkinglot = selectedParkinglot
 			mapVC?.allParkinglots = parkinglots
 		}
 	}
-
+	
 	/**
 	Call ServerController to update all local data, catch possible errors and handle the UI based on the refresh (e.g. UIRefreshControl and the UIBarButtonItem).
 	*/
 	@objc func updateData() {
 		showActivityIndicator()
-
+		
 		// Set title to selected city
 		updateTitle(withCity: nil)
-
-        guard let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity),
-            let _ = UserDefaults.standard.string(forKey: Defaults.sortingType) else {
-            return
-        }
-
-        park.fetchLots(forCity: selectedCity) { [weak self] result in
-            switch result {
-            case .failure(let error):
-                self?.stopRefreshUI()
-                self?.handleUpdateError(error)
-            case .success(let response):
-                self?.stopRefreshUI()
-                self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
-                DispatchQueue.main.async {
-                    (self?.tableView.dataSource as? LotlistDataSource)?.set(lots: response.lots)
-                    self?.parkinglots = response.lots
-                    self?.tableView.reloadData()
-                }
-            }
-        }
+		
+		guard let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity),
+			  let _ = UserDefaults.standard.string(forKey: Defaults.sortingType) else {
+			return
+		}
+		
+		park.fetchLots(forCity: selectedCity) { [weak self] result in
+			switch result {
+			case .failure(let error):
+				self?.stopRefreshUI()
+				self?.handleUpdateError(error)
+			case .success(let response):
+				self?.stopRefreshUI()
+				self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
+				DispatchQueue.main.async {
+					(self?.tableView.dataSource as? LotlistDataSource)?.set(lots: response.lots)
+					self?.parkinglots = response.lots
+					self?.tableView.reloadData()
+				}
+			}
+		}
 	}
-
-    func showOutdatedDataWarning(lastUpdated: Date, lastDownloaded: Date) {
-        // TODO: Use both dates to give a diff to the user or show that the server seems to be broken.
-        let now = Date()
-        let calendar = Calendar(identifier: .gregorian)
-        let dateDiff = calendar.dateComponents(Set([.minute]), from: lastUpdated, to: now)
-
+	
+	func showOutdatedDataWarning(lastUpdated: Date, lastDownloaded: Date) {
+		// TODO: Use both dates to give a diff to the user or show that the server seems to be broken.
+		let now = Date()
+		let calendar = Calendar(identifier: .gregorian)
+		let dateDiff = calendar.dateComponents(Set([.minute]), from: lastUpdated, to: now)
+		
 		var attrs = [NSAttributedString.Key: Any]()
-
-        if let diff = dateDiff.minute, diff >= 60 {
+		
+		if let diff = dateDiff.minute, diff >= 60 {
 			attrs = [NSAttributedString.Key.foregroundColor: UIColor.red]
-            drop(L10n.outdatedDataWarning.string, state: .blur(.dark))
-        }
-
-        let dateFormatter = DateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
-        DispatchQueue.main.async {
-            self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastUpdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
-        }
-    }
-
+			drop(L10n.outdatedDataWarning.string, state: .blur(.dark))
+		}
+		
+		let dateFormatter = DateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
+		DispatchQueue.main.async {
+			self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastUpdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
+		}
+	}
+	
 	/**
 	Called by the request to the API in case of failure and handed the error to display to the user.
 	*/
 	func handleUpdateError(_ err: Error) {
-        let description = err.localizedDescription
-        drop(description, state: .error)
-//        switch err {
-//        case .server(_), .decoding:
-//            drop(L10n.serverError.string, state: .error)
-//        case .request:
-//            drop(L10n.requestError.string, state: .error)
-//            // TODO: Is this really a good idea?
-////        case .notFound:
-////            UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
-////            UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
-////            UserDefaults.standard.synchronize()
-////            updateData()
-////            updateTitle(withCity: "Dresden")
-//        default:
-//            drop(L10n.unknownError.string, state: .error)
-//        }
+		let description = err.localizedDescription
+		drop(description, state: .error)
+		//        switch err {
+		//        case .server(_), .decoding:
+		//            drop(L10n.serverError.string, state: .error)
+		//        case .request:
+		//            drop(L10n.requestError.string, state: .error)
+		//            // TODO: Is this really a good idea?
+		////        case .notFound:
+		////            UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
+		////            UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
+		////            UserDefaults.standard.synchronize()
+		////            updateData()
+		////            updateTitle(withCity: "Dresden")
+		//        default:
+		//            drop(L10n.unknownError.string, state: .error)
+		//        }
 	}
 	
 	func updateTitle(withCity city: String?) {
@@ -167,14 +167,13 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 			titleButton.setTitle(selectedCity, for: UIControl.State())
 		}
 	}
-
+	
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - IBActions
 	// /////////////////////////////////////////////////////////////////////////
-
+	
 	@IBAction func titleButtonTapped(_ sender: UIButton) {
-		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: Bundle.main)
-		let citySelectionVC = settingsStoryBoard.instantiateViewController(withIdentifier: "City SelectionTVC")
+		let citySelectionVC = CitySelectionTVC.new(delegate: self)
 		show(citySelectionVC, sender: self)
 	}
 	
@@ -187,7 +186,7 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - Reload Button Stuff
 	// /////////////////////////////////////////////////////////////////////////
-
+	
 	/**
 	Remove all UI that has to do with refreshing data.
 	*/
@@ -198,7 +197,7 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 			self.refreshControl?.endRefreshing()
 		})
 	}
-
+	
 	/**
 	Replace the right UIBarButtonItem with the reload button.
 	*/
@@ -206,7 +205,7 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 		let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(LotlistViewController.updateData))
 		navigationItem.rightBarButtonItem = refreshButton
 	}
-
+	
 	/**
 	Replace the right UIBarButtonItem with a UIActivityIndicatorView.
 	*/
@@ -217,39 +216,39 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 		let activityItem = UIBarButtonItem(customView: activityIndicator)
 		navigationItem.rightBarButtonItem = activityItem
 	}
-
+	
 	@IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
 		updateData()
 	}
-
+	
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - UITableViewDataSource
 	// /////////////////////////////////////////////////////////////////////////
-
+	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+		return 60
 	}
-
+	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCell(withIdentifier: String(describing: LotCell.self)) as? LotCell) ?? LotCell()
+		let cell = (tableView.dequeueReusableCell(withIdentifier: String(describing: LotCell.self)) as? LotCell) ?? LotCell()
 		
 		let thisLot = parkinglots[indexPath.row]
 		cell.setParkinglot(thisLot)
-
+		
 		// Don't display any separators if the list is still empty
 		if parkinglots.count == 0 {
 			tableView.separatorStyle = .none
 		} else {
 			tableView.separatorStyle = .singleLine
 		}
-
+		
 		return cell
 	}
-
+	
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - UITableViewDelegate
 	// /////////////////////////////////////////////////////////////////////////
-
+	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if let _ = (tableView.cellForRow(at: indexPath) as? LotCell)?.parkinglot?.coordinate {
 			performSegue(withIdentifier: "showParkinglotMap", sender: self)
@@ -264,33 +263,72 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 	// /////////////////////////////////////////////////////////////////////////
 	
 	func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-//		let fullForecastVC = ForecastViewController()
-//		fullForecastVC.lot = (viewControllerToCommit as? MiniForecastViewController)?.lot
-//		show(fullForecastVC, sender: nil)
+		//		let fullForecastVC = ForecastViewController()
+		//		fullForecastVC.lot = (viewControllerToCommit as? MiniForecastViewController)?.lot
+		//		show(fullForecastVC, sender: nil)
 	}
 	
 	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-//		if let indexPath = tableView.indexPathForRow(at: location) {
-//			guard let hasForecast = (tableView.cellForRow(at: indexPath) as? LotCell)?.parkinglot?.hasForecast, hasForecast else { return nil }
-//			
-//			if #available(iOS 9.0, *) {
-//			    previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
-//			}
-//			let forecastVC = MiniForecastViewController()
-//			forecastVC.lot = parkinglots[indexPath.row]
-//			return forecastVC
-//		}
+		//		if let indexPath = tableView.indexPathForRow(at: location) {
+		//			guard let hasForecast = (tableView.cellForRow(at: indexPath) as? LotCell)?.parkinglot?.hasForecast, hasForecast else { return nil }
+		//
+		//			if #available(iOS 9.0, *) {
+		//			    previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+		//			}
+		//			let forecastVC = MiniForecastViewController()
+		//			forecastVC.lot = parkinglots[indexPath.row]
+		//			return forecastVC
+		//		}
 		return nil
 	}
-
+	
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - Helpers
 	// /////////////////////////////////////////////////////////////////////////
-
+	
 	func viewWithImageName(_ imageName: String) -> UIImageView {
 		let image = UIImage(named: imageName)
 		let imageView = UIImageView(image: image)
 		imageView.contentMode = .center
 		return imageView
+	}
+}
+
+extension LotlistViewController: CitySelectionTVCActions {
+	var showExperimental: Bool {
+		UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
+	}
+	
+	func fetchCities(completion: @escaping (Swift.Result<[CitySelectionTVC.CityViewModel], Error>) -> Void) {
+		park.fetchCities { result in
+			switch result {
+			case .failure(let error):
+				completion(.failure(error))
+			case .success(let metaResponse):
+				let mappedCities = metaResponse.cities.map { CitySelectionTVC.CityViewModel(name: $0.name, hasActiveSupport: $0.hasActiveSupport) }
+				completion(.success(mappedCities))
+			}
+		}
+	}
+	
+	var selectedCity: CitySelectionTVC.CityViewModel {
+		let defaults = UserDefaults.standard
+		let name = defaults.string(forKey: Defaults.selectedCity) ?? "Unknown"
+		let activeSupport = defaults.bool(forKey: Defaults.selectedCitySupport)
+		return CitySelectionTVC.CityViewModel(name: name, hasActiveSupport: activeSupport)
+	}
+	
+	func didSelect(city: CitySelectionTVC.CityViewModel) {
+		UserDefaults.standard.set(city.hasActiveSupport, forKey: Defaults.selectedCitySupport)
+		UserDefaults.standard.set(city.name, forKey: Defaults.selectedCity)
+		UserDefaults.standard.set(city.name, forKey: Defaults.selectedCityName)
+		UserDefaults.standard.synchronize()
+		
+		if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+		   let lotListVC = sceneDelegate.window?.rootViewController?.children[0] as? LotlistViewController {
+			lotListVC.updateData()
+		}
+		
+		let _ = navigationController?.popToRootViewController(animated: true)
 	}
 }
