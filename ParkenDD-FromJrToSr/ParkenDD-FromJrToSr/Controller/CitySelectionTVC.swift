@@ -11,6 +11,7 @@ import UIKit
 protocol CitySelectionTVCActions {
 	var showExperimental: Bool { get }
 	func fetchCities(completion: @escaping (Swift.Result<[CitySelectionTVC.CityViewModel], Error>) -> Void)
+	var selectedCity: CitySelectionTVC.CityViewModel { get }
 }
 
 class CitySelectionTVC: UITableViewController {
@@ -48,7 +49,7 @@ extension CitySelectionTVC {
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "citySelectionCell", for: indexPath)
-		let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity) ?? ""
+		let selectedCity = delegate.selectedCity
 
 		let city = availableCities[indexPath.row]
 
