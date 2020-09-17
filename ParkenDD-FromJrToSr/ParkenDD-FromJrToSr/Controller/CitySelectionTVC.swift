@@ -16,16 +16,16 @@ class CitySelectionTVC: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        park.fetchCities { [weak self] result in
+        park.fetchCities { result in
 			switch result {
 			case .failure(let error):
 				print(error)
 			case .success(let apiResponse):
 				let showExperimental = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
-				self?.availableCities = showExperimental ? apiResponse.cities : apiResponse.cities.filter { $0.hasActiveSupport }
+				self.availableCities = showExperimental ? apiResponse.cities : apiResponse.cities.filter { $0.hasActiveSupport }
 			}
 			DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
 	}
