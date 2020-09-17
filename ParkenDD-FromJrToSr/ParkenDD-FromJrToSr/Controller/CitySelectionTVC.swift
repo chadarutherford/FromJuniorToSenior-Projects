@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import ParkKit
 
 protocol CitySelectionTVCActions {
 	var showExperimental: Bool { get }
-	func fetchCities(completion: @escaping (Result<MetaResponse>) -> Void)
+	func fetchCities(completion: @escaping (Swift.Result<[City], Error>) -> Void)
 }
 
 class CitySelectionTVC: UITableViewController {
