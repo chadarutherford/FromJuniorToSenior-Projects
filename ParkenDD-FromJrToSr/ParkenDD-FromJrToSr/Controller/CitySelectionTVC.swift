@@ -24,7 +24,7 @@ class CitySelectionTVC: UITableViewController {
 				let showExperimental = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
 				self?.availableCities = showExperimental ? apiResponse.cities : apiResponse.cities.filter { $0.hasActiveSupport }
 			}
-            OperationQueue.main.addOperation {
+			DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         }
