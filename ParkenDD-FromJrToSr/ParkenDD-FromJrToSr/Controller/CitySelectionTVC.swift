@@ -12,6 +12,7 @@ protocol CitySelectionTVCActions {
 	var showExperimental: Bool { get }
 	func fetchCities(completion: @escaping (Swift.Result<[CitySelectionTVC.CityViewModel], Error>) -> Void)
 	var selectedCity: CitySelectionTVC.CityViewModel { get }
+	func didSelect(city: CitySelectionTVC.CityViewModel)
 }
 
 class CitySelectionTVC: UITableViewController {
@@ -23,6 +24,7 @@ class CitySelectionTVC: UITableViewController {
 
 	var delegate: CitySelectionTVCActions!
     var availableCities = [CityViewModel]()
+	var selectedFilters = [Int: Int]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,8 +33,8 @@ class CitySelectionTVC: UITableViewController {
 			switch result {
 			case .failure(let error):
 				print(error)
-			case .success(let apiResponse):
-				self.availableCities = self.delegate.showExperimental ? apiResponse.cities : apiResponse.cities.filter { $0.hasActiveSupport }
+			case .success(let cities):
+				self.availableCities = self.delegate.showExperimental ? cities : cities.filter { $0.hasActiveSupport }
 			}
 			DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -55,7 +57,7 @@ extension CitySelectionTVC {
 
 		cell.textLabel?.text = city.name
 		cell.textLabel?.textColor = city.hasActiveSupport ? .black : .lightGray
-		cell.accessoryType = city.name == selectedCity ? .checkmark : .none
+		cell.accessoryType = city.name == selectedCity.name ? .checkmark : .none
 
 		return cell
 	}
@@ -64,22 +66,30 @@ extension CitySelectionTVC {
 extension CitySelectionTVC {
 	// MARK: - Table view delegate
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		for row in 0..<tableView.numberOfRows(inSection: 0) {
-			tableView.cellForRow(at: IndexPath(row: row, section: 0))?.accessoryType = .none
+		// Deselect the row
+		tableView.deselectRow(at: indexPath, animated: false)
+		
+		// Did the user tap on a selected filter item? If so, do nothing
+		guard let selectedFilterRow = selectedFilters[indexPath.section] else { return }
+		if selectedFilterRow == indexPath.row {
+			return
 		}
-		tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-		tableView.deselectRow(at: indexPath, animated: true)
-
+		
+		// Remove the checkmark from the previously selected filter item
+		if let previousCell = tableView.cellForRow(at: IndexPath(row: selectedFilterRow, section: indexPath.section)) {
+			previousCell.accessoryType = .none
+		}
+		
+		// Mark the newly selected filter item with a checkmark
+		if let cell = tableView.cellForRow(at: indexPath) {
+			cell.accessoryType = .checkmark
+		}
+		
+		// Remember this filter item
+		selectedFilters[indexPath.section] = indexPath.row
+		
+		// Notify of selection
 		let selectedCity = availableCities[indexPath.row]
-
-		UserDefaults.standard.set(selectedCity.name, forKey: Defaults.selectedCity)
-		UserDefaults.standard.set(selectedCity.name, forKey: Defaults.selectedCityName)
-		UserDefaults.standard.synchronize()
-
-		if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate, let lotlistVC = sceneDelegate.window?.rootViewController?.children[0] as? LotlistViewController {
-			lotlistVC.updateData()
-		}
-
-		let _ = navigationController?.popToRootViewController(animated: true)
+		delegate.didSelect(city: selectedCity)
 	}
 }
