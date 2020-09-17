@@ -11,6 +11,7 @@ import ParkKit
 
 protocol CitySelectionTVCActions {
 	var showExperimental: Bool { get }
+	func fetchCities(completion: @escaping (Result<MetaResponse>) -> Void)
 }
 
 class CitySelectionTVC: UITableViewController {
@@ -21,7 +22,7 @@ class CitySelectionTVC: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        park.fetchCities { result in
+        delegate.fetchCities { result in
 			switch result {
 			case .failure(let error):
 				print(error)
