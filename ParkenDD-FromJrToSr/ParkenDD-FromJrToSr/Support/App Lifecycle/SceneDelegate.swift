@@ -5,18 +5,37 @@
 //  Created by Chad Rutherford on 9/16/20.
 //
 
+import ParkKit
 import UIKit
+
+let park = ParkKit()
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-
-
+	
+	var inBackground = false
+	
+	var supportedCities: [String]?
+	var citiesList = [City]() {
+		didSet {
+			supportedCities = citiesList.map { $0.name }.sorted()
+		}
+	}
+	
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
 		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let _ = (scene as? UIWindowScene) else { return }
+		Location.manager.requestWhenInUseAuthorization()
+		UserDefaults.register(Default.default())
+		supportedCities = UserDefaults.standard.array(forKey: Defaults.supportedCities) as? [String]
+		
+		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
+		var attrsDict = [NSAttributedString.Key: Any]()
+		attrsDict[NSAttributedString.Key.font] = font
+		UIBarButtonItem.appearance().setTitleTextAttributes(attrsDict, for: .normal)
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {

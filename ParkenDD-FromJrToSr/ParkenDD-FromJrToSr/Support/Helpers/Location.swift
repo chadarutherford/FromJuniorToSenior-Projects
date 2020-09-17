@@ -18,7 +18,7 @@ class Location: NSObject {
     static let shared = Location()
     static let manager = CLLocationManager()
     static var authState: CLAuthorizationStatus {
-        return CLLocationManager.authorizationStatus()
+		return manager.authorizationStatus
     }
 
     var lastLocation: CLLocation?

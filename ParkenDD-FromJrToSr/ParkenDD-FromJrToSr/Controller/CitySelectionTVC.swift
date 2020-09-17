@@ -12,20 +12,18 @@ import ParkKit
 class CitySelectionTVC: UITableViewController {
 
     var availableCities = [City]()
-	var park = ParkKit()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
         park.fetchCities { [weak self] result in
-            guard let response = try? result.get() else {
-                print(result)
-                return
-            }
-
-            let showExperimental = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
-            self?.availableCities = showExperimental ? response.cities : response.cities.filter { $0.hasActiveSupport }
-
+			switch result {
+			case .failure(let error):
+				print(error)
+			case .success(let apiResponse):
+				let showExperimental = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
+				self?.availableCities = showExperimental ? apiResponse.cities : apiResponse.cities.filter { $0.hasActiveSupport }
+			}
             OperationQueue.main.addOperation {
                 self?.tableView.reloadData()
             }

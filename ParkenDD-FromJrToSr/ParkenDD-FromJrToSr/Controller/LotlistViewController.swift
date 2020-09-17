@@ -14,7 +14,6 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 
 	var parkinglots = [Lot]()
 	var defaultSortedParkinglots = [Lot]()
-	let park = ParkKit()
 
 	var dataURL: String?
 
