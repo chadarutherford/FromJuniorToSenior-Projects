@@ -10,13 +10,18 @@ import UIKit
 
 protocol CitySelectionTVCActions {
 	var showExperimental: Bool { get }
-	func fetchCities(completion: @escaping (Swift.Result<[City], Error>) -> Void)
+	func fetchCities(completion: @escaping (Swift.Result<[CitySelectionTVC.CityViewModel], Error>) -> Void)
 }
 
 class CitySelectionTVC: UITableViewController {
+	
+	struct CityViewModel {
+		let name: String
+		let hasActiveSupport: Bool
+	}
 
 	var delegate: CitySelectionTVCActions!
-    var availableCities = [City]()
+    var availableCities = [CityViewModel]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
